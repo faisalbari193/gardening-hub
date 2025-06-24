@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+.App.light {
+  background-color: white;
+  color: black;
+}
+
+.App.dark {
+  background-color: #1f2937; 
+  color: white;
+}
+
+.App {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

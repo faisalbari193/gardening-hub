@@ -6,14 +6,13 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDEHSScEiaPYbM3acGCmv7nDeUjwXbOY14",
-  authDomain: "gardening-hub-2363f.firebaseapp.com",
-  projectId: "gardening-hub-2363f",
-  storageBucket: "gardening-hub-2363f.firebasestorage.app",
-  messagingSenderId: "869845988129",
-  appId: "1:869845988129:web:3c59bf88cf83f8695a0460"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service

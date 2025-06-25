@@ -1,6 +1,6 @@
 A full-featured gardening community web application where users can share, browse, and manage garden tips.
 
-🔗 Live Site: [https://gardening-hub-fcbe1.firebaseapp.com/]
+🔗 Live Site: [(https://gardening-hub-2363f.web.app/)]
 
 ---
 

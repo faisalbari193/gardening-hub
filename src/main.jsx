@@ -16,6 +16,9 @@ import UpdateTip from "./pages/UpdateTip";
 import ExploreGardeners from "./pages/ExploreGardeners";
 import { ThemeProvider } from "./Provider/ThemeContext";
 import ErrorPage from "./pages/ErrorPage";
+import ShareTip from "./pages/ShareTips";
+import DashboardLayout from "./pages/DashboardLayout";
+import EventDetails from "./components/EventDetails";
 
 const router = createBrowserRouter([
   {
@@ -25,15 +28,6 @@ const router = createBrowserRouter([
       { index: true, Component: Home },
       { path: "/signin", Component: SignIn },
       { path: "/signup", Component: SIgnUp },
-      {
-        path: "/share-tips",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <ShareTips></ShareTips>{" "}
-          </PrivateRoute>
-        ),
-      },
       {
         path: "/tip-details/:id",
         element: (
@@ -47,15 +41,6 @@ const router = createBrowserRouter([
           ),
       },
       { path: "/browse-tips", Component: BrowseTips },
-      {
-        path: "/my-tips",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <MyTips />{" "}
-          </PrivateRoute>
-        ),
-      },
       {
         path: "/update-tip/:id",
         element: (
@@ -73,6 +58,28 @@ const router = createBrowserRouter([
         Component: ExploreGardeners,
         loader: () =>
           fetch("https://gardening-server-coral.vercel.app/gardener"),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "share-tip",
+        element: <ShareTip />,
+      },
+      {
+        path: "my-tips",
+        element: <MyTips />,
+      },
+      {
+        path: "event/:id", // ✅ Add this route for event details
+        element: <EventDetails />,
       },
     ],
   },

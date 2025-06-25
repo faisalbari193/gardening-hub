@@ -32,11 +32,11 @@ const Reviewers = () => {
       <h2 className="text-2xl font-bold text-center mb-6">
         🌼 Garden Reviewers
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {reviewers.map((reviewer, index) => (
           <motion.div
             key={index}
-            className="bg-white  shadow-md rounded-lg p-4 border border-green-200 dark:border-green-700"
+            className="bg-white shadow-md rounded-lg p-4 border border-green-200 dark:border-green-700"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -45,7 +45,7 @@ const Reviewers = () => {
             <h3 className="text-xl text-black font-semibold mb-2">
               {reviewer.name}
             </h3>
-            <p className="text-black ">{reviewer.review}</p>
+            <p className="text-black">{reviewer.review}</p>
           </motion.div>
         ))}
       </div>

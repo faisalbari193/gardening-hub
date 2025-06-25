@@ -15,7 +15,7 @@ const SwiperBanner = () => {
         "Boost your plant's growth with proper care.",
       ],
       image:
-        "https://i.postimg.cc/zB8qKVPd/gardening-equipment-with-peat-pots-plant-gardening-gloves-wooden-table.jpg",
+        "https://i.postimg.cc/sD0ZzS6Q/gardening-tools-rope-watering-can-gloves-concrete-backdrop-against-wooden-wall.jpg",
     },
     {
       title: "Green Thumb Meetup",
@@ -49,11 +49,15 @@ const SwiperBanner = () => {
       {slides.map((slide, index) => (
         <SwiperSlide key={index}>
           <div
-            className="h-full flex items-center justify-center text-white bg-cover bg-center"
+            className="relative h-full flex items-center justify-center text-white bg-cover bg-center"
             style={{ backgroundImage: `url(${slide.image})` }}
           >
-            <div className="bg-opacity-50 p-6 rounded-lg text-center max-w-xl">
-              <h2 className="text-3xl text-yellow-400 font-bold">
+            {/* Blackish Overlay */}
+            <div className="absolute  z-0"></div>
+
+            {/* Content on top */}
+            <div className="relative p-6 rounded-lg text-center max-w-xl z-10 space-y-4">
+              <h2 className="text-3xl text-yellow-400 font-bold transition-all duration-300 hover:text-4xl ">
                 <Typewriter
                   words={[slide.title]}
                   loop={0}
@@ -64,14 +68,16 @@ const SwiperBanner = () => {
                   delaySpeed={2000}
                 />
               </h2>
-              <div className="my-4 text-lg leading-snug">
+              <div className="text-lg leading-snug space-y-1">
                 {slide.desc.map((line, i) => (
-                  <p key={i}>{line}</p>
+                  <p
+                    key={i}
+                    className="transition-all text-yellow-200 duration-300 hover:scale-105 text-2xl"
+                  >
+                    {line}
+                  </p>
                 ))}
               </div>
-              <button className="mt-2 px-4 py-2 bg-blue-500 rounded hover:bg-blue-600">
-                Explore Event
-              </button>
             </div>
           </div>
         </SwiperSlide>

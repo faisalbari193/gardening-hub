@@ -14,7 +14,7 @@ const GardenerCard = ({ gardener }) => {
 
   return (
     <motion.div
-      className="w-full sm:w-1/2 lg:w-1/3 p-2"
+      className="w-full sm:w-1/2 lg:w-1/3 p-4"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.03 }}

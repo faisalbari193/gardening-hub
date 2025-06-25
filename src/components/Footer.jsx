@@ -33,12 +33,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="mt-10 border-t pt-6 text-sm text-center text-white">
-        <p>
-          Copyright © {new Date().getFullYear()} - All rights reserved by ACME
-          Industries Ltd.
-        </p>
-      </div>
     </footer>
   );
 };

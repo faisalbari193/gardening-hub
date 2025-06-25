@@ -41,89 +41,83 @@ const SignUp = () => {
         navigate("/");
       })
       .catch((error) => {
-        const errorMessage = error.message;
-        toast.error(`Signup failed: ${errorMessage}`);
+        toast.error(`Signup failed: ${error.message}`);
       });
   };
 
   return (
-    <div>
-      <title>Sign Up</title>
-      <div className="flex flex-col max-w-md mx-auto min-h-screen p-6 rounded-md sm:p-10 dark:bg-gray-50 dark:text-gray-800">
-        <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
-          <p className="text-sm dark:text-gray-600">
-            Sign Up to access your account
+    <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-gray-100 px-4">
+      {/* Left: Sign Up Form */}
+      <div className="w-full md:w-1/2 max-w-md mx-auto bg-white p-8 shadow-xl rounded-xl">
+        <h1 className="text-4xl font-bold text-center mb-2">Sign Up</h1>
+        <p className="text-sm text-gray-500 text-center mb-6">
+          Create your account to get started
+        </p>
+
+        <form onSubmit={handleSignUp} className="space-y-6">
+          <div>
+            <label className="block mb-1 text-sm font-medium">Name</label>
+            <input
+              required
+              type="text"
+              name="text"
+              placeholder="Enter your name"
+              className="input input-bordered w-full"
+            />
+          </div>
+          <div>
+            <label className="block mb-1 text-sm font-medium">Photo URL</label>
+            <input
+              required
+              type="text"
+              name="photo"
+              placeholder="Enter your photo URL"
+              className="input input-bordered w-full"
+            />
+          </div>
+          <div>
+            <label className="block mb-1 text-sm font-medium">Email</label>
+            <input
+              required
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              className="input input-bordered w-full"
+            />
+          </div>
+          <div>
+            <label className="block mb-1 text-sm font-medium">Password</label>
+            <input
+              required
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              className="input input-bordered w-full"
+            />
+          </div>
+          {passwordError && (
+            <p className="text-red-500 text-sm">{passwordError}</p>
+          )}
+
+          <button type="submit" className="btn btn-primary w-full">
+            Sign Up
+          </button>
+          <p className="text-sm text-center text-gray-600">
+            Already have an account?
+            <Link to="/signin" className="text-blue-500 ml-1 hover:underline">
+              Sign in
+            </Link>
           </p>
-        </div>
-        <form onSubmit={handleSignUp} className="space-y-12">
-          <div className="space-y-4">
-            <div>
-              <label className="block mb-2 text-sm">Name</label>
-              <input
-                required
-                type="text"
-                name="text"
-                placeholder="Enter Your Name"
-                className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
-              />
-            </div>
-            <div>
-              <label className="block mb-2 text-sm">PhotoURL</label>
-              <input
-                required
-                type="text"
-                name="photo"
-                placeholder="Enter Your Photo URL"
-                className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
-              />
-            </div>
-            <div>
-              <label className="block mb-2 text-sm">Email address</label>
-              <input
-                required
-                type="email"
-                name="email"
-                placeholder="Enter Your Email"
-                className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
-              />
-            </div>
-            <div>
-              <div className="flex justify-between mb-2">
-                <label className="text-sm">Password</label>
-              </div>
-              <input
-                required
-                type="password"
-                name="password"
-                placeholder="Enter Your Password"
-                className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
-              />
-            </div>
-            {passwordError && (
-              <p className="text-red-500 text-sm p-2">{passwordError}</p>
-            )}
-          </div>
-          <div className="space-y-2">
-            <div>
-              <button
-                type="submit"
-                className="w-full px-8 py-3 btn font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50"
-              >
-                Sign up
-              </button>
-            </div>
-            <p className="px-6 text-sm text-center dark:text-gray-600">
-              Already have an account yet?
-              <Link
-                to="/signin"
-                className="hover:underline dark:text-violet-600 ml-1"
-              >
-                Sign in
-              </Link>
-            </p>
-          </div>
         </form>
+      </div>
+
+      {/* Right: Illustration */}
+      <div className="hidden md:flex md:w-1/2 justify-center items-center p-10">
+        <img
+          src="https://i.postimg.cc/qRBB8rHW/6333213.jpg"
+          alt="Sign Up Illustration"
+          className="max-w-full h-auto"
+        />
       </div>
     </div>
   );

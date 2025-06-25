@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { useState, use } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { getAuth, signInWithPopup } from "firebase/auth";
@@ -20,7 +20,6 @@ const SignIn = () => {
     const password = e.target.password.value;
     login(email, password)
       .then((result) => {
-        const user = result.user;
         toast.success("Login successful!");
         navigate(`${location.state ? location.state : "/"}`);
       })
@@ -34,7 +33,6 @@ const SignIn = () => {
   const handleGoogleLogin = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        const user = result.user;
         toast.success("Google login successful!");
         navigate("/");
       })
@@ -44,82 +42,91 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      <title>Sign In</title>
-      <div className="w-full max-w-md mx-auto min-h-screen p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800">
-        <h2 className="mb-3 text-3xl font-semibold text-center">
-          Login to your account
+    <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-gray-100 px-4">
+      {/* Left Side: Sign In Form */}
+      <div className="w-full md:w-1/2 max-w-md bg-white p-8 shadow-xl rounded-xl mx-auto">
+        <h2 className="text-3xl font-semibold text-center mb-2">
+          SignIn to your account
         </h2>
-        <p className="text-sm text-center dark:text-gray-600">
-          Don't have account?
-          <Link to="/signup" className="focus:underline hover:underline ml-1">
+        <p className="text-sm text-center text-gray-500 mb-6">
+          Don't have an account?
+          <Link to="/signup" className="text-blue-500 ml-1 hover:underline">
             Sign up here
           </Link>
         </p>
-        <div className="my-6 space-y-4">
+
+        <div className="mb-6">
           <button
             onClick={handleGoogleLogin}
-            aria-label="Login with Google"
-            type="button"
-            className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-600 focus:dark:ring-violet-600"
+            className="flex items-center justify-center w-full p-3 border border-gray-300 rounded-md hover:bg-gray-50 transition"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"
-              className="w-5 h-5 fill-current"
+              className="w-5 h-5 mr-2 fill-current"
             >
               <path d="M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z"></path>
             </svg>
-            <p>Login with Google</p>
+            Login with Google
           </button>
         </div>
-        <div className="flex items-center w-full my-4">
-          <hr className="w-full dark:text-gray-600" />
-          <p className="px-3 dark:text-gray-600">OR</p>
-          <hr className="w-full dark:text-gray-600" />
+
+        <div className="flex items-center my-4">
+          <hr className="w-full border-gray-300" />
+          <span className="px-3 text-gray-500">OR</span>
+          <hr className="w-full border-gray-300" />
         </div>
-        <form onSubmit={handleSignIn} className="space-y-8">
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <label className="block text-sm">Email address</label>
-              <input
-                required
-                type="email"
-                name="email"
-                placeholder="Enter Your Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
-              />
-            </div>
-            <div className="space-y-2">
-              <div className="flex justify-between">
-                <label className="text-sm">Password</label>
-                <Link
-                  to="/forget-password"
-                  state={email}
-                  className="text-xs hover:underline dark:text-gray-600"
-                >
-                  Forgot password?
-                </Link>
-              </div>
-              <input
-                required
-                type="password"
-                name="password"
-                placeholder="Enter Your Password"
-                className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
-              />
+
+        <form onSubmit={handleSignIn} className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium mb-1">
+              Email Address
+            </label>
+            <input
+              required
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="input input-bordered w-full"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Password</label>
+            <input
+              required
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              className="input input-bordered w-full"
+            />
+            <div className="text-right mt-1">
+              <Link
+                to="/forget-password"
+                state={email}
+                className="text-xs text-blue-500 hover:underline"
+              >
+                Forgot password?
+              </Link>
             </div>
           </div>
-          <button
-            type="submit"
-            className="w-full px-8 py-3 btn font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50"
-          >
-            Sign in
+
+          <button type="submit" className="btn btn-primary w-full">
+            Sign In
           </button>
+          {error && <p className="text-red-600 text-sm">{error}</p>}
         </form>
-        {error && <p className="text-red-600 text-xl p-2">{error}</p>}
+      </div>
+
+      {/* Right Side: Illustration */}
+      <div className="hidden md:flex md:w-1/2 justify-center items-center p-8">
+        <img
+          src="https://i.postimg.cc/BQ269MpY/3094352.jpg"
+          alt="Sign In Illustration"
+          className="max-w-full h-auto"
+        />
       </div>
     </div>
   );

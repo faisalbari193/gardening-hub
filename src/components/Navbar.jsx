@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useTheme } from "../Provider/ThemeContext";
+
 const Navbar = () => {
   const { user, logout, loading } = useContext(AuthContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -32,6 +33,7 @@ const Navbar = () => {
         />
         <h2 className="text-xl font-bold">Gardener's Hub</h2>
       </div>
+
       <div className="flex items-center gap-3 lg:hidden">
         <button onClick={toggleTheme} className="btn btn-sm">
           {theme === "light" ? "🌙" : "☀️"}
@@ -61,36 +63,42 @@ const Navbar = () => {
       <div className="hidden lg:flex navbar-center">
         <ul className="menu menu-horizontal px-1 gap-4">
           <li>
-            <Link to="/" className="text-xl font-semibold">
+            <Link
+              to="/"
+              className="text-xl font-semibold flex items-center h-full"
+            >
               Home
             </Link>
           </li>
           {user && (
-            <>
-              <li>
-                <Link to="/share-tips" className="text-xl font-semibold">
-                  Share Tips
-                </Link>
-              </li>
-              <li>
-                <Link to="/my-tips" className="text-xl font-semibold">
-                  My Tips
-                </Link>
-              </li>
-            </>
+            <li>
+              <Link
+                to="/dashboard"
+                className="text-xl font-semibold flex items-center h-full"
+              >
+                Dashboard
+              </Link>
+            </li>
           )}
           <li>
-            <Link to="/browse-tips" className="text-xl font-semibold">
+            <Link
+              to="/browse-tips"
+              className="text-xl font-semibold flex items-center h-full"
+            >
               Browse Tips
             </Link>
           </li>
           <li>
-            <Link to="/explore" className="text-xl font-semibold">
+            <Link
+              to="/explore"
+              className="text-xl font-semibold flex items-center h-full"
+            >
               Explore
             </Link>
           </li>
         </ul>
       </div>
+
       <div className="flex items-center gap-4">
         <button
           onClick={toggleTheme}
@@ -137,6 +145,8 @@ const Navbar = () => {
           </div>
         )}
       </div>
+
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="w-full lg:hidden mt-4">
           <ul className="menu menu-vertical bg-white text-black rounded-box p-4 shadow">

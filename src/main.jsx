@@ -19,6 +19,8 @@ import ErrorPage from "./pages/ErrorPage";
 import ShareTip from "./pages/ShareTips";
 import DashboardLayout from "./pages/DashboardLayout";
 import EventDetails from "./components/EventDetails";
+import AboutUs from "./pages/AboutUs";
+import Contact from "./pages/Contact";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,8 @@ const router = createBrowserRouter([
     Component: MainLayout,
     children: [
       { index: true, Component: Home },
+      { path: "/aboutUs", Component: AboutUs },
+      { path: "/contact", Component: Contact },
       { path: "/signin", Component: SignIn },
       { path: "/signup", Component: SIgnUp },
       {

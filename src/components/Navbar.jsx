@@ -96,6 +96,22 @@ const Navbar = () => {
               Explore
             </Link>
           </li>
+          <li>
+            <Link
+              to="/aboutUs"
+              className="text-xl font-semibold flex items-center h-full"
+            >
+              About Us
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/contact"
+              className="text-xl font-semibold flex items-center h-full"
+            >
+              Contact
+            </Link>
+          </li>
         </ul>
       </div>
 
@@ -168,6 +184,12 @@ const Navbar = () => {
             </li>
             <li>
               <Link to="/explore">Explore</Link>
+            </li>
+            <li>
+              <Link to="/aboutUs">About Us</Link>
+            </li>
+            <li>
+              <Link to="/contact">Contact</Link>
             </li>
             {!user && (
               <>
